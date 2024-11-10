@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "internet_identity": {
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "frontend": {},
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    },
+    "nexthood_backend": {
+      "main": "src/nexthood_backend/main.mo",
+      "type": "motoko"
+    },
+    "nexthood_frontend": {
+      "dependencies": [
+        "nexthood_backend"
+      ],
+      "source": [
+        "src/nexthood_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "nexthood_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
