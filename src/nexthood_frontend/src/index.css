@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sixtyfour&display=swap');
+@tailwind components;
+@tailwind base;
+@tailwind utilities;
+
+
+
+.authCards {
+    @apply border-[3px] rounded-lg hover:border-primary hover:bg-primary hover:bg-opacity-5 flex flex-col justify-center items-center p-3 md:p-4 w-full h-[150px] md:h-[210px]
+}
+.authInput {
+    @apply border border-black border-opacity-40 outline-none py-3 md:py-5 px-4 mx-auto w-full rounded-lg
+}
