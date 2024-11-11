@@ -12,3 +12,7 @@
 .authInput, .eventSearch {
     @apply border border-black border-opacity-40 outline-none py-3 md:py-5 px-4 mx-auto rounded-lg
 }
+
+.createEvent {
+    @apply border border-black border-opacity-40 outline-none py-3 md:py-5 px-4 mx-auto rounded-lg mb-3
+}
