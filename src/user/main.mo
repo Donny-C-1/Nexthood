@@ -1,44 +1,29 @@
 import Text "mo:base/Text";
 import List "mo:base/List";
-// import Iter "mo:base/Iter";
-// import Bool "mo:base/Bool";
+
 actor {
-    type User = {
-        id: Text;
-        name: Text;
-        communities: Text;
+  type User = {
+    principal : Text;
+    username : Text;
+  };
+
+  stable var users = List.nil<User>();
+
+
+  public func addUser(principal : Text, username : Text) : async Text {
+    users := List.push({
+      principal = principal;
+      username = username;
+    }, users);
+    return "Hello " # username # ". Your id is " # principal;
+  };
+
+  public query func getUser(principal : Text): async ?User {
+    for (user in List.toArray(users).vals()) {
+      if (user.principal  == principal) {
+        return ?user;
+      };
     };
-
-    var currentUser : User = {
-        id = "";
-        name = "";
-        communities = "";
-    };
-
-    var pendingMessage = "";
-
-    stable var users = List.nil<User>();
-
-    public query func getInfo() : async User {
-        currentUser;
-    };
-
-    public query func getCommunities() : async Text {
-        "This is the community";
-    };
-
-
-    public func sendMessage(msg : Text) : async Text {
-        // let a : Nat = 5;
-        pendingMessage := msg;
-        "";
-    };
-
-    public func addUser(principal : Text, name0 : Text) {
-        users := List.push({
-            id = principal;
-            name = name0;
-            communities = "";
-        }, users);
-    }
-}
+    return null;
+  };
+};
