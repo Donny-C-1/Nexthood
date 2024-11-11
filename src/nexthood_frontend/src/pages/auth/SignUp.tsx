@@ -32,9 +32,10 @@ const SignUp = () => {
         <input
           type="text"
           placeholder="The name of your community"
-          className="authInput"
+          className="authInput w-full"
         />
-        <button className="authInput text-white font-semibold text-center bg-primary mt-4">
+        {/* <br /> */}
+        <button className="authInput text-white font-semibold text-center bg-primary mt-4 w-full">
           Create a Profle
         </button>
       </form>
