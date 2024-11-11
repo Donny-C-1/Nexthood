@@ -1,29 +1,74 @@
-import List "mo:base/List";
 import Text "mo:base/Text";
-import Nat "mo:base/Nat";
-// import User "user";
+import List "mo:base/List";
+import Debug "mo:base/Debug";
 
 actor {
 
-    type User = {
+    type Member = {
+        id: Text;
+        role: Text;
+    };
+
+    type Group = {
         id: Text;
         name: Text;
+        description: Text;
+        members: List.List<Member>;
     };
 
-    stable var members = List.nil<User>();
+    stable var groups = List.nil<Group>();
 
-    // Function Input: 
-    // user : User, commName : Text, commID: Nat
-    public func createCommunity() {
-        
+    public func createGroup(id : Text, name : Text, description : Text, adminID : Text) {
+        var members = List.nil<Member>();
+
+        members := List.push({
+            id = adminID;
+            role = "admin";
+        }, members);
+
+        groups := List.push({
+            id = id;
+            name = name;
+            description = description;
+            members = members;
+        }, groups);
     };
 
-    public func joinCommunity(user : User) {
-        members := List.push(user, members);
+    public query func getGroupInfo(id : Text) : async ?Group {
+        for (group in List.toArray(groups).vals()) {
+            if (group.id == id) {
+                return ?group;
+            };
+        };
+        return null;
     };
 
-    public query func getMembers() : async Text {
-        // Iter.toArray(members);
-        "This are the members";
+    public func addMember(groupID : Text, userID : Text) {
+        var group = do {
+            var result: ?Group = null;
+            for (gr in List.toArray(groups).vals()) {
+                if (gr.id == groupID) {
+                    result := ?gr;
+                };
+            };
+            result;
+        };
+
+        switch (group) {
+            case (?g) {
+
+                // g.members := List.push({
+                //     id = userID;
+                //     role = "member";
+                // }, g.members);
+            };
+            case (null) {
+                Debug.print("Group not found");
+            }
+        }
     };
+
+    public query func getAllGroups() : async List.List<Group> {
+        return groups;
+    }
 }
