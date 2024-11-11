@@ -17,7 +17,8 @@
     },
     "nexthood_frontend": {
       "dependencies": [
-        "nexthood_backend"
+        "nexthood_backend",
+        "internet_identity"
       ],
       "source": [
         "src/nexthood_frontend/dist"

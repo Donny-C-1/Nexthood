@@ -1,16 +1,42 @@
 import { useNavigate } from "react-router-dom";
 import group from "/assets/group.png";
 import person from "/assets/person.png";
+import { authenticateUser } from "./auth";
+import { useState, useEffect } from "react";
 
 const SignUp = () => {
+  const [ userPrincipal, setUserPrincipal ] = useState("");
   const navigate = useNavigate()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() 
     navigate("/auth/step-2")
 
   }
+
+  // This USEEffect is causing issues 
+  // I don't know why or I'm tired 
+  // Help me fix it
+  useEffect(() => {
+    async function authFlow() {
+      const authClient = await authenticateUser();
+      if (authClient) {
+        const identity = authClient.getIdentity();
+        setUserPrincipal(identity.getPrincipal().toText());
+      }
+    }
+    authFlow();
+  }, [])
+  
+  
   return (
     <div className="mt-8 md:mt-14 px-[5%] lg:px-[8%] md:px-8">
+      {/* This is how you check if they are authenticated */}
+      {userPrincipal ? (
+        <div>
+          <h1>Welcome</h1>
+          <p>Your principal ID: {userPrincipal}</p>
+        </div>
+      ) : ""}
       <h2 className="text-[#2C3E50] font-bold text-center w-full text-xl md:text-4xl">
         How are you planning on using NEXTHOOD?
       </h2>
