@@ -15,9 +15,18 @@
       "main": "src/nexthood_backend/main.mo",
       "type": "motoko"
     },
+    "community": {
+      "main": "src/community/main.mo",
+      "type": "motoko"
+    },
+    "user": {
+      "main": "src/user/main.mo",
+      "type": "motoko"
+    },
     "nexthood_frontend": {
       "dependencies": [
-        "nexthood_backend"
+        "nexthood_backend",
+        "internet_identity"
       ],
       "source": [
         "src/nexthood_frontend/dist"
