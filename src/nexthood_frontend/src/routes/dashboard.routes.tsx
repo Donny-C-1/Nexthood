@@ -1,24 +1,28 @@
+import { useEffect, useState } from "react";
 import { Navigate, RouteObject } from "react-router-dom";
 import DashboardLayout from "../components/layout/dashboard.layout";
 import Home from "../pages/dashboard/Home";
-import { AuthClient } from "@dfinity/auth-client";
+import clientPromise from "../auth_client";
 
-// AuthClient is like firebase
-// Once you come to our website let AuthClient.create() run; It is an asynchronous function
-// The client we get from that has a isAuthenticated method and a login method
-// The login method is asynchronous. like await client.login(process.env.CANISter_id).
-// Also I don't know if we have access to the process
+const ProtectedRoute = () => {
+  const [ isAuthenticated, setIsAuthenticated ] = useState<boolean | null>(null);
 
-//uncomment below: 
-/*
-const AuthCheck = async () => {
-  const loggedIn = await AuthClient.create().then(
-    (client) => client.isAuthenticated
-  );
+  useEffect(() => {
+    const checkAuth = async () => {
+      const client = await clientPromise;
+      const authStatus = await client.isAuthenticated();
+      setIsAuthenticated(authStatus);
+    }
 
-  return loggedIn;
-};
-*/
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthenticated ? <Home /> : <Navigate to={"/auth/signup"} replace />;
+}
 
 const DashboardRoutes: RouteObject = {
   path: "dashboard",
@@ -26,15 +30,9 @@ const DashboardRoutes: RouteObject = {
   children: [
     {
       path: "",
-      element: <Home />
-      // element: (await AuthCheck()) ? (
-      //   <Home />
-      // ) : (
-      //   <Navigate to={"/auth/login"} replace />
-      // or <SignIn client={}
-      // ),
+      element: <ProtectedRoute />
     },
-  ],
-};
+  ]
+}
 
 export default DashboardRoutes;
