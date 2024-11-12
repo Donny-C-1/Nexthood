@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import FocusCards from "../../components/ui/FocusCards";
 import { focusAreas } from "../../data";
+import { authenticateUser } from "../../components/libs/auth";
 
 const Step2 = () => {
   const navigate = useNavigate() 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    authenticateUser()
     navigate("/dashboard")
   }
   return (
