@@ -11,9 +11,15 @@ const DashboardRoutes : RouteObject = getAuthToken ? {
   element: <DashboardLayout />,
   children: [
     {
-      path: '',
+      path: "",
       element: <Home />
-    }
+      // element: (await AuthCheck()) ? (
+      //   <Home />
+      // ) : (
+      //   <Navigate to={"/auth/login"} replace />
+      // or <SignIn client={}
+      // ),
+    },
   ],
 } : {
     path: 'auth',
