@@ -5,13 +5,24 @@ import SignUp from '../pages/auth/SignUp';
 import Step2 from '../pages/auth/Step2';
 
 
+//we can return the client and pass it here with the asnc func: 
+/*
+const Client = async () => {
+  const client = await AuthClient.create().then(
+    (client) => client
+  );
+
+  return loggedIn;
+};
+*/
+
 const AuthRoutes: RouteObject = {
   path: 'auth',
   element: <AuthLayout />,
   children: [
     {
       path: 'login',
-      element: <SignIn />,
+      element: <SignIn client={null} />, // 
     },
     {
       path: 'signup',
