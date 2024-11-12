@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { events } from "../../../../declarations/events"
+// import { events } from "../../../../declarations/events"
 import { Dispatch, SetStateAction, useState } from "react";
 
 // Availabel function 
@@ -38,13 +38,13 @@ const CreateEventForm = ({
     
         try {
           // Call the Motoko function from your backend to create an event
-          await events.createEvent(
-            generateUniqueID(), // Replace this with your logic to create a unique ID
-            formData.name,
-            formData.description,
-            formData.date,
-            formData.time
-          );
+        //   await events.createEvent(
+        //     generateUniqueID(), // Replace this with your logic to create a unique ID
+        //     formData.name,
+        //     formData.description,
+        //     formData.date,
+        //     formData.time
+        //   );
           
           // Redirect to the /events page after the event is created
           navigate('/dashboard');

@@ -12,29 +12,35 @@ export type FocusArea = {
     icon: string
 }
 
+export type Event = {
+    name: string 
+    community: string 
+    date: string
+}
+
 export const focusAreas: FocusArea[] = [
     {
         name: "AI", 
         icon: frame1
     }, 
     {
-        name: "Blockchain", 
+        name: "Writing", 
         icon: frame2
     }, 
     {
-        name: "Writing", 
+        name: "Community Management", 
         icon: frame3,
     }, 
     {
-        name: "Design", 
+        name: "Marketing", 
         icon: frame4
     }, 
     {
-        name: "Community Management", 
+        name: "Blockchain", 
         icon: frame5
     }, 
     {
-        name: "Marketing", 
+        name: "Design", 
         icon: frame6
     }, 
     {
@@ -45,4 +51,22 @@ export const focusAreas: FocusArea[] = [
         name: "Business Development", 
         icon: frame8
     }
+]
+
+export const upcomingEventsDummy: Event[] = [
+    {
+        name: "Blockcchaing 3.0", 
+        community: "BlockchainUNN", 
+        date: "12-09-2024"
+    },
+    {
+        name: "Nacosathon", 
+        community: "Nacos", 
+        date: "12-09-2024"
+    },
+    {
+        name: "Forex MasterClass", 
+        community: "Alpha Blocks", 
+        date: "12-09-2024"
+    },
 ]
