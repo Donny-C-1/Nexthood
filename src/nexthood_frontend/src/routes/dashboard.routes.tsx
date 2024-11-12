@@ -21,7 +21,7 @@ const ProtectedRoute = () => {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? <Home /> : <Navigate to={"/auth/signup"} replace />;
+  return isAuthenticated ? <Home /> : <Navigate to={"/auth/login"} replace />;
 }
 
 const DashboardRoutes: RouteObject = {

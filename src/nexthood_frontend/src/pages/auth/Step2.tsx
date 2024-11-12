@@ -6,7 +6,10 @@ import clientPromise from "../../auth_client";
 import { useState } from "react";
 
 const Step2 = () => {
-
+  const [focus, setFocus] = useState("")
+  const handleChangeFocus = (name: string) => {
+    setFocus(name)
+  }
   // const client = await clientPromise;
   const navigate = useNavigate() 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
