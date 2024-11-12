@@ -23,10 +23,17 @@
       "main": "src/user/main.mo",
       "type": "motoko"
     },
+    "events": {
+      "main": "src/events/main.mo",
+      "type": "motoko"
+    },
     "nexthood_frontend": {
       "dependencies": [
         "nexthood_backend",
-        "internet_identity"
+        "internet_identity",
+        "community",
+        "user",
+        "events"
       ],
       "source": [
         "src/nexthood_frontend/dist"
