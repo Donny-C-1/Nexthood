@@ -3,9 +3,13 @@ import FocusCards from "../../components/ui/FocusCards";
 import { focusAreas } from "../../data";
 import clientPromise from "../../auth_client";
 
+import { useState } from "react";
 
 const Step2 = () => {
-
+  const [focus, setFocus] = useState("")
+  const handleChangeFocus = (name: string) => {
+    setFocus(name)
+  }
   // const client = await clientPromise;
   const navigate = useNavigate() 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,8 +45,12 @@ const Step2 = () => {
 
         <p className="mt-6">Select focus area</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-          {focusAreas.map((f, key) => (
-            <FocusCards key={key} {...f} />
+          {focusAreas.map((f, index) => (
+            <FocusCards
+              key={index}
+              display={{ ...f }}
+              select={{ focus: focus, setFocus: handleChangeFocus }}
+            />
           ))}
         </div>
       </form>

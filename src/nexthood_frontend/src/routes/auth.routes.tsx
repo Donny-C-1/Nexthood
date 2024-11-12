@@ -1,8 +1,8 @@
 import { RouteObject } from 'react-router-dom';
 import AuthLayout from '../components/layout/auth.layout';
-import SignIn from '../pages/auth/SignIn';
 import SignUp from '../pages/auth/SignUp';
 import Step2 from '../pages/auth/Step2';
+import SignIn from '../pages/auth/SignIn';
 
 
 //we can return the client and pass it here with the asnc func: 
