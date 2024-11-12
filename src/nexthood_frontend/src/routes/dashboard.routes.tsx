@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 const getAuthToken = Cookies.get('authToken');
 const DashboardRoutes : RouteObject = {
-  path: 'dashboard',
+  path: getAuthToken ? 'dashboard' : "auth/login",
   element:  getAuthToken ? <DashboardLayout /> : <AuthLayout/>,
   children: [
     {
