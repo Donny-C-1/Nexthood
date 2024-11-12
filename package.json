@@ -21,7 +21,7 @@
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.6"
+    "@types/js-cookie": "^3.0.6",
     "react-router-dom": "^6.28.0",
     "uuid": "^11.0.3"
   }
