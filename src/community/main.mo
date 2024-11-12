@@ -56,7 +56,6 @@ actor {
 
         switch (group) {
             case (?g) {
-
                 // g.members := List.push({
                 //     id = userID;
                 //     role = "member";
