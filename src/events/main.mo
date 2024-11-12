@@ -7,16 +7,16 @@ actor {
         id: Text;
         name: Text;
         description: Text;
-        startDate: Text;
+        date: Text;
         time: Text;
     };
 
-    public func createEvent(id: Text, name: Text, desc: Text, start: Text, time: Text) : async Text {
+    public func createEvent(id: Text, name: Text, desc: Text, date: Text, time: Text) : async Text {
         let newEvent : Event = {
             id = id;
             name = name;
             description = desc;
-            startDate = start;
+            date = date;
             time = time;
         };
 
@@ -24,7 +24,7 @@ actor {
         return "Event created successfully with ID: " # newEvent.id;
     };
 
-    public query func displayAllEvents() : async [Event] {
+    public query func getAll() : async [Event] {
         return events;
     };
 

@@ -1,25 +1,68 @@
-// import React, { useEffect, useState } from 'react';
-import { events } from 'declarations/events';
+import React, { useEffect, useState } from 'react';
+import { events as eventsModel } from 'declarations/events';
 // import EventsLayout from '../../components/layout/events.layout';
 
 // const Event
 
-// // Define the Event type
-// interface Event {
-//   id: string;
-//   name: string;
-//   description: string;
-//   date: string;
-//   time: string;
-// }
+// Define the Event type
+interface Event {
+  id: string;
+  name: string;
+  description: string;
+  date: string;
+  time: string;
+}
 
 const EventsPage = () => {
-    events.displayAllEvents().then(v => console.log("Blood", v));
-    // evts.displayAllEvents().then((v: any) => console.log("Blood", v));
-    // evts.displayAllEvents().then((v: any) => console.log(v));
-    return (<div>
-        <p>All Events</p>
-    </div>)
+    const [ events, setEvents ] = useState<Event[]>([]);
+    const [ loading, setLoading ] = useState(true);
+    const [ error, setError ] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const allEvents = await eventsModel.getAll();
+                console.log(allEvents);
+                setEvents(allEvents);
+            } catch (err) {
+                console.log("Error fetching events \n", err);
+                setError("Failed to load events");
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchEvents();
+    }, [])
+
+    if (loading) {
+        return <p>Loading events...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>
+    }
+
+    return (
+        <main>
+            <h1>All Events</h1>
+            {events.length > 0 ?  (
+                <ul className="event_list">
+                    {events.map(event => (
+                        <li key={event.id}>
+                            <h2>{event.name}</h2>
+                            <p><strong>Description:</strong> {event.description}</p>
+                            <p><strong>Date:</strong> {event.date}</p>
+                            <p><strong>Time:</strong> {event.time}</p>
+                        </li>
+                    ))}
+                </ul>)
+                :
+                (<p>No Events Available</p>
+
+            )}
+        </main>
+    )
 }
 
 // const EventComponent: React.FC = () => {

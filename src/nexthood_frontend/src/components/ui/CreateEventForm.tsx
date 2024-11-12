@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-// import { events } from "../../../../declarations/events"
+import { events as eventModel } from "declarations/events"
 import { Dispatch, SetStateAction, useState } from "react";
 
 // Availabel function 
@@ -37,19 +37,14 @@ const CreateEventForm = ({
         e.preventDefault(); // Prevent default form submission behavior
     
         try {
-          // Call the Motoko function from your backend to create an event
-        //   await events.createEvent(
-        //     generateUniqueID(), // Replace this with your logic to create a unique ID
-        //     formData.name,
-        //     formData.description,
-        //     formData.date,
-        //     formData.time
-        //   );
-          
+          let response = await eventModel.createEvent(JSON.stringify(generateUniqueID()), JSON.stringify(formData.name), JSON.stringify(formData.description), JSON.stringify(formData.date), JSON.stringify(formData.time))
+      
           // Redirect to the /events page after the event is created
-          navigate('/dashboard');
+          navigate('/events');
+          alert(response);
         } catch (error) {
           console.error('Error creating event:', error);
+          navigate("/dashboard");
           // Optionally, handle error display here
         }
       };
@@ -58,6 +53,7 @@ const CreateEventForm = ({
       const generateUniqueID = () => {
         return crypto.randomUUID();
       };
+
     // await events.createEvent("1593a13e-3d52-4225-9078-70dc24f4ea40", "Very First Event", "This is my first event. It is used to test this functionality. I hope it works.", "Tomorrow", "13:00");
     // let evet = await events.displayAllEvents();
   return (
