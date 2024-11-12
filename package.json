@@ -19,5 +19,8 @@
     "@dfinity/auth-client": "^2.1.3",
     "react-router-dom": "^6.28.0",
     "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0"
   }
 }
