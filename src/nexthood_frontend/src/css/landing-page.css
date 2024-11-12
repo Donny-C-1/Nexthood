@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    font-family: Bahnschrift;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-inline: 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: #fff;
+    box-shadow: grey 0 2px 4px;
+    overflow: auto;
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: dodgerblue;
+
+    }
+
+    nav {
+        display: none;
+        gap: 1rem;
+        margin-left: auto;
+
+        a {
+            padding: 1rem;
+
+            &:hover {
+                text-decoration: underline;
+                color: dodgerblue;
+            }
+        }
+    }
+
+    .menu_button {
+        display: block;
+        padding: .75rem;
+        margin-left: auto;
+
+        div {
+            background-color: #000;
+            width: 1.5rem;
+            height: .25rem;
+            margin: .3rem .15rem;
+        }
+    }
+
+    @media screen and (min-width: 32.5rem) {
+        nav {
+            display: flex;
+        }
+
+        .menu_button {
+            display: none;
+        }
+    }
+}
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url("/assets/hero_bg_1.jpg");
+    background-size: cover;
+    background-position: center;
+    /* padding-top: 4rem; */
+
+    .text_block {
+        margin-inline: 6rem;
+    }
+
+    .sub_head {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        font-weight: lighter;
+    }
+
+    h1 {
+        font-size: 6rem;
+        line-height: 1;
+        margin-block: 1rem 1.25rem;
+
+    }
+
+    .call_to_action {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 1rem 2rem;
+        border: 1px solid black;
+        border-radius: .25rem;
+        transition: .25s ease;
+
+        &:hover {
+            color: white;
+            background-color: black;
+        }
+
+        &:active {
+            scale: .9;
+        }
+    }
+}
