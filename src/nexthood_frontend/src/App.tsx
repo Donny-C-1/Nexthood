@@ -1,8 +1,9 @@
 import "./css/landing-page.css"
-
-
+import { user } from "declarations/user";
 
 function App() {
+  console.log(import.meta.url);
+  user.getAll().then((v: any) => console.log(v));
 
   return (
     <>

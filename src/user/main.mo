@@ -26,4 +26,8 @@ actor {
     };
     return null;
   };
+
+  public query func getAll() : async Text {
+    return "This is all our users";
+  }
 };

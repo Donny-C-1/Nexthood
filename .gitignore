@@ -29,3 +29,9 @@ desktop.ini
 
 #log files
 /logs
+
+#bug files
+*.Identifier
+/src/nexthood_frontend/public/assets/3d-background-with-white-cubes.jpg\357\200\272Zone.Identifier
+/src/nexthood_frontend/public/assets/5297078.jpg\357\200\272Zone.Identifier
+/src/nexthood_frontend/public/assets/5594016.jpg\357\200\272Zone.Identifier

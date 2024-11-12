@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from 'react';
-// import { events as evts } from '../../declarations/events';
+import { events } from 'declarations/events';
 // import EventsLayout from '../../components/layout/events.layout';
 
 // const Event
@@ -14,6 +14,8 @@
 // }
 
 const EventsPage = () => {
+    events.displayAllEvents().then(v => console.log("Blood", v));
+    // evts.displayAllEvents().then((v: any) => console.log("Blood", v));
     // evts.displayAllEvents().then((v: any) => console.log(v));
     return (<div>
         <p>All Events</p>

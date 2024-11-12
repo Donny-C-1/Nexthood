@@ -29,12 +29,12 @@ header {
 
     }
 
-    nav {
+    :is(nav) {
         display: none;
         gap: 1rem;
         margin-left: auto;
 
-        a {
+        :is(a) {
             padding: 1rem;
 
             &:hover {
@@ -49,7 +49,7 @@ header {
         padding: .75rem;
         margin-left: auto;
 
-        div {
+        & div {
             background-color: #000;
             width: 1.5rem;
             height: .25rem;
@@ -89,7 +89,7 @@ header {
         font-weight: lighter;
     }
 
-    h1 {
+    :is(h1) {
         font-size: 6rem;
         line-height: 1;
         margin-block: 1rem 1.25rem;
