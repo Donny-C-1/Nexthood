@@ -1,19 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import FocusCards from "../../components/ui/FocusCards";
 import { focusAreas } from "../../data";
+import clientPromise from "../../auth_client";
+
 import { useState } from "react";
 
 const Step2 = () => {
-  const [focus, setFocus] = useState("");
-  const handleChangeFocus = (name: string) => {
-    setFocus(name)
-  }
 
-  const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    navigate("/dashboard");
-  };
+  // const client = await clientPromise;
+  const navigate = useNavigate() 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const client = await clientPromise;
+
+    client.login({
+      identityProvider: `http://localhost:4943?canisterId=${process.env.CANISTER_ID_INTERNET_IDENTITY}#authorize`,
+      onSuccess: () => {
+        console.log("Successfully logged in");
+        navigate("/dashboard");
+      },onError: (err) => {
+        console.log("\n\n!Authentication Error! \n",err);
+      }
+    })
+  }
   return (
     <div className="mt-8 px-[5%] lg:px-[8%] md:px-8 pb-4">
       <h2 className="text-[#2C3E50] font-bold  w-full text-xl md:text-4xl">
