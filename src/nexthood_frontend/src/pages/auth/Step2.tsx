@@ -1,13 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import FocusCards from "../../components/ui/FocusCards";
 import { focusAreas } from "../../data";
+import { useState } from "react";
 
 const Step2 = () => {
-  const navigate = useNavigate() 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    navigate("/dashboard")
+  const [focus, setFocus] = useState("");
+  const handleChangeFocus = (name: string) => {
+    setFocus(name)
   }
+
+  const navigate = useNavigate();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
   return (
     <div className="mt-8 px-[5%] lg:px-[8%] md:px-8 pb-4">
       <h2 className="text-[#2C3E50] font-bold  w-full text-xl md:text-4xl">
@@ -27,8 +33,12 @@ const Step2 = () => {
 
         <p className="mt-6">Select focus area</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-          {focusAreas.map((f, key) => (
-            <FocusCards key={key} {...f} />
+          {focusAreas.map((f, index) => (
+            <FocusCards
+              key={index}
+              display={{ ...f }}
+              select={{ focus: focus, setFocus: handleChangeFocus }}
+            />
           ))}
         </div>
       </form>

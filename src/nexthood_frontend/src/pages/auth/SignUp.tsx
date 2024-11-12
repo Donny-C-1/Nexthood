@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import group from "/assets/group.png";
 import person from "/assets/person.png";
+import { useState } from "react";
+
+type UserType = "user" | "community";
 
 const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [userType, setUserType] = useState<UserType>("community");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault() 
-    navigate("/auth/step-2")
+    e.preventDefault();
+    navigate("/auth/step-2");
+  };
 
-  }
   return (
     <div className="mt-8 md:mt-14 px-[5%] lg:px-[8%] md:px-8">
       <h2 className="text-[#2C3E50] font-bold text-center w-full text-xl md:text-4xl">
@@ -19,11 +23,21 @@ const SignUp = () => {
         later
       </p>
       <div className="flex justify-between gap-8 placeholder mt-8 w-full mx-auto">
-        <button className="authCards border-primary bg-primary bg-opacity-5">
+        <button
+        onClick={() => setUserType("community")}
+          className={`authCards ${
+            userType === "community" ? "border-primary bg-primary" : ""
+          } bg-opacity-5`}
+        >
           <img src={group} alt="" />
           <p>With my Community</p>
         </button>
-        <button className="authCards border-[#D9D9D9]">
+        <button
+        onClick={() => setUserType("user")}
+          className={`authCards bg-opacity-5 border-[#D9D9D9]  ${
+            userType === "user" ? "border-primary bg-primary" : ""
+          }`}
+        >
           <img src={person} alt="" />
           <p>For myself</p>
         </button>
